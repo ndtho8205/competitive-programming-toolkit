@@ -1,7 +1,7 @@
 from pathlib import Path
 from shutil import copytree
 
-from . import config
+from src import config
 
 
 def create(parent_path: Path, problem_name: str):

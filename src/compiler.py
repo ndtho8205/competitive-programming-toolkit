@@ -4,7 +4,7 @@ LANGS = {
 }
 
 
-def _compile(code_path, flags):
+def compile(code_path, flags):
     pass
 
 

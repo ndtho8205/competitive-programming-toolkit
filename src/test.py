@@ -1,7 +1,7 @@
 from typing import List
 from pathlib import Path
 
-from . import config
+from src import config
 
 
 def _get_code_path_list(code_dir_path: Path):

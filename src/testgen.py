@@ -2,7 +2,7 @@ import sys
 import importlib.machinery
 from pathlib import Path
 
-from . import utils, config
+from src import utils, config
 
 
 def generate(problem_path: Path, n_test_case: int):
@@ -18,6 +18,7 @@ def generate(problem_path: Path, n_test_case: int):
     format_name = f"0{len(str(n_test_case))}"
     print(f"Generating test cases in {output_path}")
     for i in range(0, n_test_case):
+        # TODO: ask before overwrite test cases
         sys.stdout = open(output_path / f"{i:{format_name}}.in", "w")
         logic.logic(utils.random())
         sys.stdout.close()
