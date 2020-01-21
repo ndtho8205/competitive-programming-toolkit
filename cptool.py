@@ -21,7 +21,7 @@ parser.add_argument(
 parser.add_argument(
     "--testgen",
     metavar="NUMBER_OF_TEST_CASE",
-    help="generate a number of test cases based on your logic/logic.py",
+    help="generate a number of test cases based on your testgen/generator.py",
     type=int,
 )
 parser.add_argument(
