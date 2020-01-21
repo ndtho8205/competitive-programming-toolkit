@@ -27,6 +27,13 @@ parser.add_argument(
 parser.add_argument(
     "--test", help="test your codes on test cases", action="store_true", default=False
 )
+parser.add_argument(
+    "--diff",
+    help="show different between *.ans files",
+    metavar="FILES",
+    type=str,
+    nargs="+",
+)
 
 if __name__ == "__main__":
     args = parser.parse_args()
