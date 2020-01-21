@@ -4,7 +4,7 @@ from typing import Callable
 # MAX_N = 1000000
 
 
-def generate(f_rand: Callable[[], int]):
+def generate(f_rand: Callable[[int, int], int]):
     # f_rand(min_range, max_range) is a function
     # that return a pesudo-random integer
     # in [min_range, max_range]

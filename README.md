@@ -62,7 +62,7 @@ $ cat problem_1/testgen/generator.py
   4    │ # MAX_N = 1000000
   5    │
   6    │
-  7    │ def generate(f_rand: Callable[[], int]):
+  7    │ def generate(f_rand: Callable[[int, int], int]):
   8    │     # f_rand(min_range, max_range) is a function
   9    │     # that return a pesudo-random integer
   10   │     # in [min_range, max_range]
