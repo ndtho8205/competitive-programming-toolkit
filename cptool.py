@@ -2,12 +2,12 @@
 
 __version__ = "0.1.0"
 
-import sys
+# import sys
 import argparse
 
 from src import config, create, testgen, test
 
-sys.tracebacklimit = 0
+# sys.tracebacklimit = 0
 
 parser = argparse.ArgumentParser(
     prog="cptool", description="A toolkit for Competitive Programming"
