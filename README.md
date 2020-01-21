@@ -26,4 +26,4 @@ cd competitive-programming-toolkit
 ./install.sh
 ```
 
-The script just simply create a hard link between `cptool.py` and `~/.local/bin/cptool`. You will need to add `~/.local/bin` to your `$PATH`.
+The script just simply creates a hard link between `cptool.py` and `~/.local/bin/cptool`. You will need to add `~/.local/bin` to your `$PATH`.
