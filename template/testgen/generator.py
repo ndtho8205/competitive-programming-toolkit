@@ -8,7 +8,7 @@ def generate(f_rand: Callable[[int, int], int]):
     # f_rand(min_range, max_range) is a function
     # that return a pesudo-random integer
     # in [min_range, max_range]
-    # print(f_rand(min_range=MIN_N, max_range=MAX_N))
+    # print(f_rand(MIN_N, MAX_N))
     raise NotImplementedError
 
 

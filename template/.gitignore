@@ -1,5 +1,6 @@
 !*.gitkeep
 temp/
+test/generated/
 
 # Created by https://www.gitignore.io/api/vim,python,pycharm,pycharm+iml,pycharm+all,jupyternotebook,visualstudiocode,jupyternotebooks
 # Edit at https://www.gitignore.io/?templates=vim,python,pycharm,pycharm+iml,pycharm+all,jupyternotebook,visualstudiocode,jupyternotebooks
