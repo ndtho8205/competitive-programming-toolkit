@@ -1,7 +1,7 @@
 from typing import List, Tuple
 from pathlib import Path
 
-from src import config, compiler
+from src import config, compiler, diff
 
 
 def _get_code_path_list(code_dir: Path):
@@ -10,18 +10,21 @@ def _get_code_path_list(code_dir: Path):
 
 
 def _print_progress(test_idx, test_name, total_test, code_idx, code_name, total_code):
-    print(
-        "".join(
-            [
-                f"\r  {test_idx + 1}/{total_test} test cases - ",
-                f"{code_idx + 1}/{total_code} codes: {code_name} on {test_name}",
-            ]
-        ),
-        end="",
-    )
+    if test_idx + 1 == total_test and code_idx + 1 == total_code:
+        print(f"\r\x1b[2K  {total_test}/{total_test} test cases are tested.")
+    else:
+        print(
+            "".join(
+                [
+                    f"\r  Test case {test_idx + 1}/{total_test} > ",
+                    f"Code {code_idx + 1}/{total_code} >> {code_name} on {test_name}",
+                ]
+            ),
+            end="",
+        )
 
 
-def _test(
+def _get_output(
     compiled_code_list: List[Tuple[dict, Path]], test_dir: Path, output_dir: Path
 ):
     # TODO: support different filename pattern
@@ -32,6 +35,7 @@ def _test(
 
     results = {}
     for in_idx, in_path in enumerate(test_dir.glob("*.in")):
+        output_path_list = []
         for code_idx, (lang, compiled_code_path) in enumerate(compiled_code_list):
             _print_progress(
                 in_idx,
@@ -44,13 +48,26 @@ def _test(
 
             output_path = output_dir / f"{in_path.stem}_{compiled_code_path.stem}.ans"
             compiler.execute(lang, compiled_code_path, in_path, output_path)
+            output_path_list.append(output_path)
 
-            if compiled_code_path.name in results:
-                results[compiled_code_path.name].append(output_path)
-            else:
-                results[compiled_code_path.name] = [output_path]
+        results[in_path.name] = output_path_list
 
     return results
+
+
+def _test(
+    compiled_code_list: List[Tuple[dict, Path]], test_dir: Path, output_dir: Path
+):
+    results = _get_output(compiled_code_list, test_dir, output_dir)
+
+    have_diff = False
+    for in_name, output_path_list in results.items():
+        diff_output = diff.diff(output_path_list)
+        if diff_output:
+            have_diff = True
+            print(f"  ❌ Test case {in_name}: {diff_output}")
+    if not have_diff:
+        print("  ✅ There is no difference among your codes' outputs :)")
 
 
 def test(problem_dir: Path):
@@ -80,21 +97,13 @@ def test(problem_dir: Path):
     print()
 
     print("Running your code on sample test cases")
-    sample_results = _test(compiled_code_list, sample_test_dir, output_sample_test_dir)
+    _test(compiled_code_list, sample_test_dir, output_sample_test_dir)
     print()
 
     print("Running your code on handmade test cases")
-    handmade_results = _test(
-        compiled_code_list, handmade_test_dir, output_handmade_test_dir
-    )
+    _test(compiled_code_list, handmade_test_dir, output_handmade_test_dir)
     print()
 
     print("Running your code on generated test cases")
-    generated_results = _test(
-        compiled_code_list, generated_test_dir, output_generated_test_dir
-    )
+    _test(compiled_code_list, generated_test_dir, output_generated_test_dir)
     print()
-
-    print(sample_results)
-    print(handmade_results)
-    print(generated_results)

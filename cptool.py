@@ -29,7 +29,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "--diff",
-    help="show differences between *.ans and *.ok files",
+    help="check if there is any differences among input files",
     metavar="FILES",
     type=str,
     nargs="+",

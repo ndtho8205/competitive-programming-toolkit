@@ -15,7 +15,7 @@ optional arguments:
                         testgen/generator.py
   --test                test your codes on test cases
   --diff FILES [FILES ...]
-                        show differences between *.ans and *.ok files
+                        check if there is any differences among input files
 ```
 
 ## Install
@@ -157,8 +157,3 @@ $ tree temp
 ```
 
 6. Fix bug :laughing:
-
-## TODO
-
-- [ ] Show differences between _.ans files and _.ok files
-- [ ] Show summary information
