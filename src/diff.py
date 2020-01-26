@@ -16,6 +16,6 @@ def diff(output_path_list: List[Path]):
     for i in range(0, len(output_path_list) - 1):
         for j in range(i + 1, len(output_path_list)):
             if output_content_list[i] != output_content_list[j]:
-                diff_list.append((output_path_list[i], output_path_list[j]))
+                diff_list.append((output_path_list[i].name, output_path_list[j].name))
 
     return diff_list
