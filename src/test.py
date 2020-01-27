@@ -36,6 +36,11 @@ def _get_output(
     results = {}
     for in_idx, in_path in enumerate(test_dir.glob("*.in")):
         output_path_list = []
+
+        solution_output_path = in_path.with_suffix(".ok")
+        if solution_output_path.exists() and solution_output_path.is_file():
+            output_path_list.append(solution_output_path)
+
         for code_idx, (lang, compiled_code_path) in enumerate(compiled_code_list):
             _print_progress(
                 in_idx,
