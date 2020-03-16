@@ -1,7 +1,7 @@
 from typing import List, Tuple
 from pathlib import Path
 
-from src import config, compiler, diff
+from cptool.helpers import config, compiler, diff
 
 
 def _get_code_path_list(code_dir: Path):

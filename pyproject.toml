@@ -12,7 +12,7 @@ flake8 = "*"
 flake8-docstrings = "*"
 flake8-rst-docstrings = "*"
 pylint = "*"
-black = "==19.3b0"
+black = "==19.10b0"
 pre-commit = "*"
 
 [build-system]

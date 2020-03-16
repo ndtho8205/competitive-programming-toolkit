@@ -2,10 +2,10 @@ import sys
 import importlib.machinery
 from pathlib import Path
 
-from src import utils, config
+from cptool.helpers import utils, config
 
 
-def generate(problem_dir: Path, n_test_case: int):
+def testgen(problem_dir: Path, n_test_case: int):
     generator_path = problem_dir / config.PROBLEM_PATH["testgen"]
     output_dir = problem_dir / config.PROBLEM_PATH["generated_test"]
 
