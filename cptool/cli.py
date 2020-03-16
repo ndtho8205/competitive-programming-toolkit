@@ -23,7 +23,7 @@ def main():
         try:
             SUBCOMMANDS[args.command](env, args)
         except errors.Error as err:
-            print(err.get_message())
+            return err.get_message()
     else:
         parser.print_help()
 
