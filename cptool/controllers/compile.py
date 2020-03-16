@@ -2,8 +2,9 @@ import subprocess
 from pathlib import Path
 
 _LANGS = {
+    ".rs": {"compile": "rustc '{input}' -o '{output}'", "execute": "./{} < {} > {}"},
     ".cpp": {"compile": "g++ '{input}' -o '{output}'", "execute": "./{} < {} > {}"},
-    ".py": {"execute": "python3 {input}"},
+    ".py": {"execute": "python3 {input} < {} > {}"},
 }
 
 

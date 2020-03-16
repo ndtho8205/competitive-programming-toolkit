@@ -4,6 +4,45 @@ from pathlib import Path
 from cptool.helpers import config, compiler, diff
 
 
+def test(problem_dir: Path):
+    code_dir = problem_dir / config.PROBLEM_PATH["code"]
+
+    sample_test_dir = problem_dir / config.PROBLEM_PATH["sample_test"]
+    handmade_test_dir = problem_dir / config.PROBLEM_PATH["handmade_test"]
+    generated_test_dir = problem_dir / config.PROBLEM_PATH["generated_test"]
+
+    temp_dir = problem_dir / config.PROBLEM_PATH["temp"]
+    output_sample_test_dir = temp_dir / config.PROBLEM_PATH["sample_test"]
+    output_handmade_test_dir = temp_dir / config.PROBLEM_PATH["handmade_test"]
+    output_generated_test_dir = temp_dir / config.PROBLEM_PATH["generated_test"]
+
+    # compiled_code_list = List[(lang, compiled_code_path)]
+    compiled_code_list = list(
+        map(
+            lambda code_path: compiler.compile(
+                code_path,
+                compiled_output_dir=problem_dir
+                / config.PROBLEM_PATH["temp"]
+                / config.PROBLEM_PATH["code"],
+            ),
+            _get_code_path_list(code_dir),
+        )
+    )
+    print()
+
+    print("Running your code on sample test cases")
+    _test(compiled_code_list, sample_test_dir, output_sample_test_dir)
+    print()
+
+    print("Running your code on handmade test cases")
+    _test(compiled_code_list, handmade_test_dir, output_handmade_test_dir)
+    print()
+
+    print("Running your code on generated test cases")
+    _test(compiled_code_list, generated_test_dir, output_generated_test_dir)
+    print()
+
+
 def _get_code_path_list(code_dir: Path):
     # TODO: process other files than C++
     return list(code_dir.glob("*.cpp"))
@@ -73,42 +112,3 @@ def _test(
             print(f"  ❌ Test case {in_name}: {diff_output}")
     if not have_diff:
         print("  ✅ There is no difference among your codes' outputs :)")
-
-
-def test(problem_dir: Path):
-    code_dir = problem_dir / config.PROBLEM_PATH["code"]
-
-    sample_test_dir = problem_dir / config.PROBLEM_PATH["sample_test"]
-    handmade_test_dir = problem_dir / config.PROBLEM_PATH["handmade_test"]
-    generated_test_dir = problem_dir / config.PROBLEM_PATH["generated_test"]
-
-    temp_dir = problem_dir / config.PROBLEM_PATH["temp"]
-    output_sample_test_dir = temp_dir / config.PROBLEM_PATH["sample_test"]
-    output_handmade_test_dir = temp_dir / config.PROBLEM_PATH["handmade_test"]
-    output_generated_test_dir = temp_dir / config.PROBLEM_PATH["generated_test"]
-
-    # compiled_code_list = List[(lang, compiled_code_path)]
-    compiled_code_list = list(
-        map(
-            lambda code_path: compiler.compile(
-                code_path,
-                compiled_output_dir=problem_dir
-                / config.PROBLEM_PATH["temp"]
-                / config.PROBLEM_PATH["code"],
-            ),
-            _get_code_path_list(code_dir),
-        )
-    )
-    print()
-
-    print("Running your code on sample test cases")
-    _test(compiled_code_list, sample_test_dir, output_sample_test_dir)
-    print()
-
-    print("Running your code on handmade test cases")
-    _test(compiled_code_list, handmade_test_dir, output_handmade_test_dir)
-    print()
-
-    print("Running your code on generated test cases")
-    _test(compiled_code_list, generated_test_dir, output_generated_test_dir)
-    print()

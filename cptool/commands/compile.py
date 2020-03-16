@@ -1,11 +1,11 @@
-from cptool.controllers import new
+from cptool.helpers import errors
 
 
-class NewCommand:
-    """Create a new problem."""
+class CompileCommand:
+    """Compile your codes."""
 
     def __call__(self, env, args):
-        new(env.current_dir, args.path, env.template_dir)
+        raise errors.CommandNotImplemented("compile")
 
     def register_arguments(self, parser):
         parser.add_argument("path", metavar="<path>", type=str)

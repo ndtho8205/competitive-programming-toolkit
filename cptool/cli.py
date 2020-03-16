@@ -1,17 +1,16 @@
-# import sys
-# sys.tracebacklimit = 0
-
 import argparse
 from typing import Dict
 
+from cptool import commands
+from cptool.helpers import Env, errors
 from cptool.version import VERSION
-from cptool.commands import NewCommand, TestCommand, TestgenCommand, DiffCommand
+
 
 SUBCOMMANDS = {
-    "new": NewCommand(),
-    "test": TestCommand(),
-    "testgen": TestgenCommand(),
-    "diff": DiffCommand(),
+    "new": commands.NewCommand(),
+    "test": commands.TestCommand(),
+    "testgen": commands.TestgenCommand(),
+    "diff": commands.DiffCommand(),
 }
 
 
@@ -20,7 +19,11 @@ def main():
     args = parser.parse_args()
 
     if args.command in SUBCOMMANDS:
-        SUBCOMMANDS[args.command](args)
+        env = Env()
+        try:
+            SUBCOMMANDS[args.command](env, args)
+        except errors.Error as err:
+            print(err.get_message())
     else:
         parser.print_help()
 
