@@ -7,7 +7,7 @@ def diff(output_path_list: List[Path]):
     # TODO: try other methods
     output_content_list = list(
         map(
-            lambda output_path: "\n".join(open(output_path).readlines()),
+            lambda output_path: "\n".join(open(output_path).readlines()).strip(),
             output_path_list,
         )
     )
@@ -16,6 +16,8 @@ def diff(output_path_list: List[Path]):
     for i in range(0, len(output_path_list) - 1):
         for j in range(i + 1, len(output_path_list)):
             if output_content_list[i] != output_content_list[j]:
+                print(repr(output_content_list[i]))
+                print(repr(output_content_list[j]))
                 diff_list.append((output_path_list[i].name, output_path_list[j].name))
 
     return diff_list

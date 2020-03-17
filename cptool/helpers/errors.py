@@ -42,4 +42,19 @@ class TestgenNotImplemented(Error):
 
 class LanguageNotSupported(Error):
     def __init__(self, filetype: Path):
-        self.message = f"Language `{filetype}` is not supported."
+        self.message = f"language `{filetype}` is not supported."
+
+
+class CompileError(Error):
+    def __init__(self, code_path: Path):
+        self.message = f"cannot compile `{code_path}`."
+
+
+class ExecuteError(Error):
+    def __init__(self, code_path: Path, input_file: Path, output_file: Path):
+        self.message = "".join(
+            [
+                f"executing `{code_path}` with input `{input_file}` ",
+                f"and output `{output_file}` was aborted.",
+            ]
+        )

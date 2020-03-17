@@ -74,7 +74,7 @@ def _test(codes: List[BaseLanguage], input_dir: Path, output_dir: Path):
             print(f"  ❌ Test case {in_name}: {diff_output}")
 
     if not have_diff:
-        print("  ✅ There is no difference among your codes' outputs :)")
+        print("  ✅ There are no differences among your codes' outputs :)")
 
 
 def _get_output(codes: List[BaseLanguage], input_dir: Path, output_dir: Path):
@@ -83,6 +83,9 @@ def _get_output(codes: List[BaseLanguage], input_dir: Path, output_dir: Path):
 
     total_code = len(codes)
     total_test = len(list(input_dir.glob("*.in")))
+
+    if not total_test:
+        print(f"\r\x1b[2K  {total_test} test cases are tested.")
 
     results = {}
     for input_idx, input_file in enumerate(input_dir.glob("*.in")):
