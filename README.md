@@ -1,21 +1,19 @@
 # competitive-programming-toolkit
-
 ```bash
-usage: cptool [-h] [--create PROBLEM_NAME] [--testgen NUMBER_OF_TEST_CASE]
-              [--test] [--diff FILES [FILES ...]]
+usage: cptool [-h] [-v] [SUBCOMMAND] ...
 
 A toolkit for Competitive Programming
 
+positional arguments:
+  [SUBCOMMAND]
+  new          Create a new problem.
+  testgen      Generate a number of test cases using your
+               testgen/generator.py implementation.
+  test         Test your codes on test cases.
+
 optional arguments:
-  -h, --help            show this help message and exit
-  --create PROBLEM_NAME
-                        create a new problem from a sample template
-  --testgen NUMBER_OF_TEST_CASE
-                        generate a number of test cases based on your
-                        testgen/generator.py
-  --test                test your codes on test cases
-  --diff FILES [FILES ...]
-                        check if there is any differences among input files
+  -h, --help     show this help message and exit
+  -v, --version  print version info
 ```
 
 ## Install
@@ -33,9 +31,9 @@ The script just simply creates a soft link between `cptool.py` and `~/.local/bin
 1. Create a new problem named `problem_1`
 
 ```bash
-$ cptool --create problem_1
-Creating problem in problem_1
-Successfully created problem problem_1
+$ cptool new problem_1
+Creating problem in `problem_1`
+Successfully created problem `problem_1`
 
 $ tree problem_1
 problem_1
@@ -87,9 +85,9 @@ You should use `f_rand` function provided by `cptool` to correctly create random
 
 ```bash
 $ cd problem_1
-$ cptool --testgen 10
-Generating test cases in test/generated
-Successfully generated 10 test cases
+$ cptool testgen 4
+Generating test cases in `test/generated`
+Successfully generated 4 test cases
 
 $ tree test/generated
 test/generated
@@ -97,33 +95,30 @@ test/generated
 ├── 01.in
 ├── 02.in
 ├── 03.in
-├── 04.in
-├── 05.in
-├── 06.in
-├── 07.in
-├── 08.in
-└── 09.in
+└── 04.in
 ```
 
 5. Test your codes
 
 ```bash
 $ cd problem_1
-$ cptool --test       <--- outputs from your code are stored at `temp/test`
+$ cptool test       <--- outputs from your code are stored at `temp/test`
 
-Successfully compiled file code/problem1_2.cpp in temp/code/problem1_2
-Successfully compiled file code/problem1_1.cpp in temp/code/problem1_1
+Successfully compiled file `code/problem1_1.cpp` in `target/code/problem1_1`
+Successfully compiled file `code/problem1_2.cpp` in `target/code/problem1_2`
 
 Running your code on sample test cases
-  1/1 test cases - 2/2 codes
-
+  1 test cases are tested.
+  ✅ There are no differences among your codes' outputs :)
 Running your code on handmade test cases
-
+  2 test cases are tested.
+  ✅ There are no differences among your codes' outputs :)
 Running your code on generated test cases
-  10/10 test cases - 2/2 codes
+  4 test cases are tested.
+  ✅ There are no differences among your codes' outputs :)
 
-$ tree temp
-  temp
+$ tree target
+  target
   ├── code                        <--- compiled and executable codes go here
   │   ├── problem1_1
   │   └── problem1_2
@@ -138,17 +133,7 @@ $ tree temp
       │   ├── 03_problem1_1.ans
       │   ├── 03_problem1_2.ans
       │   ├── 04_problem1_1.ans
-      │   ├── 04_problem1_2.ans
-      │   ├── 05_problem1_1.ans
-      │   ├── 05_problem1_2.ans
-      │   ├── 06_problem1_1.ans
-      │   ├── 06_problem1_2.ans
-      │   ├── 07_problem1_1.ans
-      │   ├── 07_problem1_2.ans
-      │   ├── 08_problem1_1.ans
-      │   ├── 08_problem1_2.ans
-      │   ├── 09_problem1_1.ans
-      │   └── 09_problem1_2.ans
+      │   └── 04_problem1_2.ans
       ├── handmade
       └── sample
           ├── 01_problem1_1.ans
@@ -156,4 +141,4 @@ $ tree temp
 
 ```
 
-6. Fix bug :laughing:
+6. Fix your bugs :laughing:
