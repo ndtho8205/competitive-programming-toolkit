@@ -8,9 +8,8 @@ from cptool.version import VERSION
 
 SUBCOMMANDS = {
     "new": commands.NewCommand(),
-    "test": commands.TestCommand(),
     "testgen": commands.TestgenCommand(),
-    "diff": commands.DiffCommand(),
+    "test": commands.TestCommand(),
 }
 
 

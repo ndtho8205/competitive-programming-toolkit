@@ -10,4 +10,4 @@ repos:
     hooks:
       - id: flake8
         exclude: ^template/
-        additional_dependencies: [ 'pydocstyle==3.0.0', 'flake8-docstrings', 'flake8-rst-docstrings']
+        additional_dependencies: [ 'pydocstyle', 'flake8-docstrings', 'flake8-rst-docstrings']

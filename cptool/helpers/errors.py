@@ -38,3 +38,8 @@ class TestgenNotImplemented(Error):
         self.message = (
             f"`{path}` must be implemented first before generating test cases."
         )
+
+
+class LanguageNotSupported(Error):
+    def __init__(self, filetype: Path):
+        self.message = f"Language `{filetype}` is not supported."

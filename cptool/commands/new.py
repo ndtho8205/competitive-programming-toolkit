@@ -8,4 +8,6 @@ class NewCommand:
         new(env.current_dir, args.path, env.template_dir)
 
     def register_arguments(self, parser):
-        parser.add_argument("path", metavar="<path>", type=str)
+        parser.add_argument(
+            "path", metavar="<path>", type=str, help="problem name or a specified path",
+        )

@@ -1,6 +1,9 @@
 from cptool.commands.new import NewCommand
-from cptool.commands.test import TestCommand
 from cptool.commands.testgen import TestgenCommand
-from cptool.commands.diff import DiffCommand
+from cptool.commands.test import TestCommand
 
-__all__ = ["NewCommand", "TestCommand", "TestgenCommand", "DiffCommand"]
+__all__ = [
+    "NewCommand",
+    "TestgenCommand",
+    "TestCommand",
+]
