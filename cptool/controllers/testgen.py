@@ -14,6 +14,7 @@ def testgen(n: int, testgen_code_path: Path, output_dir: Path):
     print(f"Generating test cases in `{output_dir}`")
     for i in range(0, n):
         # TODO: ask before overwrite test cases
+        # TODO: fix stack trace when test_generator raises exception
         try:
             sys.stdout = open(output_dir / f"{i:{format_name}}.in", "w")
             test_generator.generate(rand.random)

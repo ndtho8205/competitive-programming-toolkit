@@ -21,10 +21,10 @@ class BaseLanguage:
         self.code_path = code_path
         self.compiled_path = None
 
-    def compile(self, output_path: Path):
-        output_path.mkdir(parents=True, exist_ok=True)
+    def compile(self, output_dir: Path):
+        output_dir.mkdir(parents=True, exist_ok=True)
 
-        self.compiled_path = output_path / self.code_path.stem
+        self.compiled_path = output_dir / self.code_path.stem
 
         compile_instruction = self.LANG["compile"]
 

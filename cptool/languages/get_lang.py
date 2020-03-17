@@ -13,5 +13,5 @@ def get_lang(code_path: Path):
     suffix = code_path.suffix
     if suffix not in _SUFFIX_LANGS:
         raise errors.LanguageNotSupported(suffix)
-    else:
-        return _SUFFIX_LANGS[suffix](code_path)
+
+    return _SUFFIX_LANGS[suffix](code_path)

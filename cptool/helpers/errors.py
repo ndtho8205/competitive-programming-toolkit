@@ -5,7 +5,7 @@ class Error(Exception):
     message = "Unknown error."
 
     def get_message(self):
-        return f"error: {self.message}"
+        return f"❗ error: {self.message}"
 
 
 class CommandNotFound(Error):
