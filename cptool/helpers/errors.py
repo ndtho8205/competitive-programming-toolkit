@@ -8,6 +8,11 @@ class Error(Exception):
         return f"❗ error: {self.message}"
 
 
+class ArgumentError(Error):
+    def __init__(self, message):
+        self.message = message
+
+
 class CommandNotFound(Error):
     def __init__(self, command: str):
         self.message = f"command `{command}` not found."
