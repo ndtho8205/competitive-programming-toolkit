@@ -1,4 +1,3 @@
-from cptool.controllers.new import new
 from cptool.controllers.testgen import testgen
 from cptool.controllers.test import test
 

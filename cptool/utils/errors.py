@@ -8,14 +8,9 @@ class Error(Exception):
         return f"❗ error: {self.message}"
 
 
-class ArgumentError(Error):
+class CptoolError(Error):
     def __init__(self, message):
         self.message = message
-
-
-class CommandNotFound(Error):
-    def __init__(self, command: str):
-        self.message = f"command `{command}` not found."
 
 
 class CommandNotImplemented(Error):
@@ -33,6 +28,7 @@ class NotADirectory(Error):
         self.message = f"`{path}` is not a directory."
 
 
+# TODO: DELETE
 class DirectoryExists(Error):
     def __init__(self, path: Path):
         self.message = f"destination `{path}` already exists."

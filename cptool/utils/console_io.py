@@ -1,3 +1,23 @@
+def line(data: str = ""):
+    print(data)
+
+
+def ask(question: str, default: str = ""):
+    print(question, end="")
+    return input() or default
+
+
+def confirm(question: str, default: bool = True):
+    print(question, end="")
+    answer = input()
+
+    if not answer:
+        return default
+    if answer.lower() in ["y", "yes"]:
+        return True
+    return False
+
+
 class Codes:
     FOREGROUND_COLORS = {
         "black": 30,

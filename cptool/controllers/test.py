@@ -2,7 +2,7 @@ from typing import List
 from pathlib import Path
 
 from cptool.languages import BaseLanguage, get_lang
-from cptool.helpers import diff, errors
+from cptool.utils import diff, errors
 
 
 def test(env, kind):

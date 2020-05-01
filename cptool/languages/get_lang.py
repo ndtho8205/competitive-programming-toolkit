@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from cptool.languages.languages import CppLanguage, PythonLanguage, RustLanguage
-from cptool.helpers import errors
+from cptool.utils import errors
 
 
 _LANGS = [CppLanguage, PythonLanguage, RustLanguage]

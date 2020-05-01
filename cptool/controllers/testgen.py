@@ -2,7 +2,7 @@ import sys
 from importlib import machinery, util
 from pathlib import Path
 
-from cptool.helpers import rand, errors
+from cptool.utils import rand, errors
 
 
 def testgen(n: int, testgen_code_path: Path, output_dir: Path):

@@ -1,7 +1,7 @@
 import subprocess
 from pathlib import Path
 
-from cptool.helpers import errors
+from cptool.utils import errors
 
 
 class BaseLanguage:
