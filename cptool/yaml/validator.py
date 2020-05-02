@@ -1,4 +1,3 @@
-import re
 from collections import OrderedDict
 from pathlib import Path
 from typing import List, Union
@@ -7,12 +6,10 @@ from ruamel.yaml.scalarstring import FoldedScalarString, LiteralScalarString
 
 from cptool.utils import YamlFile
 from cptool.utils.errors import KeyTypeError, NotFoundKey, UnsupportedKey
-from cptool.yaml.problem_yaml import YAML_DEFAULT
+from cptool.yaml.default import YAML_DEFAULT
 
 
 class ProblemYamlValidator:
-    PATTERN_NAME = r"[a-zA-Z]+[0-9]+"
-
     def __init__(self, problem_yaml_default=YAML_DEFAULT):
         self._expected = YamlFile().load(problem_yaml_default)
 
@@ -45,31 +42,38 @@ class ProblemYamlValidator:
         unsupported_keys += got_keys - want_keys
         not_found_keys += want_keys - got_keys
 
-        for key in want_keys.intersection(got_keys):
-            if isinstance(want[key], OrderedDict):
+        for want_key in want_keys.intersection(got_keys):
+            unsupported = []
+            not_found = []
+            if isinstance(want[want_key], OrderedDict):
                 unsupported, not_found = self._validate_keys(
-                    got.get(key, {}), want[key]
+                    got.get(want_key, {}), want[want_key]
                 )
-                unsupported_keys += [f"{key}.{k}" for k in unsupported]
-                not_found_keys += [f"{key}.{k}" for k in not_found]
-            elif isinstance(want[key], list):
-                # TODO: implement validate a list of  examples
-                pass
+            elif isinstance(got[want_key], list) and isinstance(want[want_key], list):
+                elem_want = want[want_key][0]
+                if isinstance(elem_want, OrderedDict):
+                    for elem_got in got[want_key]:
+                        unsupported, not_found = self._validate_keys(
+                            elem_got, elem_want
+                        )
+            unsupported_keys += [f"{want_key}.{k}" for k in unsupported]
+            not_found_keys += [f"{want_key}.{k}" for k in not_found]
 
         return [unsupported_keys, not_found_keys]
 
     def _validate_types(self, got: OrderedDict, want: OrderedDict):
         for key, value in want.items():
             if type(got[key]) != type(value):
-                print(key, isinstance(value, FoldedScalarString))
                 if isinstance(value, FoldedScalarString):
                     raise KeyTypeError(key, "folded string, indicated by >")
                 elif isinstance(value, LiteralScalarString):
-                    raise KeyTypeError(key, "literal style, indicated by |")
-                elif type(value) == type(str):
+                    raise KeyTypeError(key, "literal string, indicated by |")
+                elif isinstance(value, str):
                     raise KeyTypeError(key, "string")
                 elif isinstance(value, list):
-                    # TODO: implement validate type of example list
-                    pass
-            if isinstance(want[key], OrderedDict):
-                self._validate_types(got[key], want[key])
+                    raise KeyTypeError(key, "list")
+                else:
+                    raise KeyTypeError(key, str(type(value)))
+            else:
+                if isinstance(want[key], OrderedDict):
+                    self._validate_types(got[key], want[key])

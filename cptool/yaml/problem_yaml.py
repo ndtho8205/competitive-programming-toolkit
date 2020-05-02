@@ -1,74 +1,54 @@
 from collections import OrderedDict
 from pathlib import Path
+from typing import Union
 
 from ruamel.yaml.scalarstring import FoldedScalarString, LiteralScalarString
 
 from cptool.utils import YamlFile
-
-YAML_DEFAULT = u"""\
-name: ''
-code: ''
-url: ''
-metadata:
-  # beginner, easy, medium, hard, challenge
-  level: ''
-  tags: ''
-  contest:
-    name: ''
-    url: ''
-    code: ''
-statement: >
-input: >
-output: >
-constraints: >
-examples:
-  - input: |
-    output: |
-    explanation: >
-"""
+from cptool.yaml.default import YAML_DEFAULT
+from cptool.yaml.validator import ProblemYamlValidator
 
 
 class ProblemYaml:
-    def __init__(self):
-        self._content = None
+    def __init__(self, problem_yaml_file: Union[str, Path] = None):
+        self._content = YamlFile().load(
+            problem_yaml_file if problem_yaml_file else YAML_DEFAULT
+        )
+        if problem_yaml_file:
+            ProblemYamlValidator().validate(self._content)
 
-    @property
-    def name(self):
-        pass
+    def set_basic_info(self, name: str = "", code: str = "", url: str = ""):
+        self._content["name"] = name
+        self._content["code"] = code
+        self._content["url"] = url
 
-    @name.setter
-    def name(self, problem_name):
-        pass
+    def set_metadata(
+        self,
+        level: str = "",
+        tags: str = "",
+        contest_name: str = "",
+        contest_url: str = "",
+        contest_code: str = "",
+    ):
+        self._content["metadata"]["level"] = level
+        self._content["metadata"]["tags"] = tags
+        self._content["metadata"]["contest"]["name"] = contest_name
+        self._content["metadata"]["contest"]["code"] = contest_code
+        self._content["metadata"]["contest"]["url"] = contest_url
 
-    @property
-    def code(self):
-        pass
+    def set_statement(self, statement: str, input: str, output: str, constraints: str):
+        self._content["statement"] = FoldedScalarString(statement)
+        self._content["input"] = FoldedScalarString(input)
+        self._content["output"] = FoldedScalarString(output)
+        self._content["constraints"] = FoldedScalarString(constraints)
 
-    @code.setter
-    def code(self, problem_code):
-        pass
+    def add_examples(self, input: str, output: str, explanation: str):
+        example = OrderedDict(
+            input=LiteralScalarString(input),
+            output=LiteralScalarString(output),
+            explanation=FoldedScalarString(explanation),
+        )
+        self._content["examples"].append(example)
 
-    def validate(self, file: Path):
-        pass
-
-    def read(self, file: Path):
-
-        pass
-
-    def save(self, file: Path):
-        pass
-
-    def _validate(self, data: OrderedDict):
-        pass
-
-    def _validate_name(self, name):
-        pass
-
-    def _validate_code(self, code):
-        pass
-
-    def _validate_input(self, input):
-        pass
-
-    def _validate_output(self, output):
-        pass
+    def export(self, stream=None, format="yaml"):
+        return YamlFile().dump(self._content, stream)

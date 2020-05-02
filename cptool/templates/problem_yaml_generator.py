@@ -1,41 +1,17 @@
-import sys
-from pathlib import Path
-
-from cptool.utils import YamlFile
 from cptool.utils import console_io as io
 from cptool.utils import errors
-
-YAML_DEFAULT = u"""\
-name: ''
-code: ''
-url: ''
-metadata:
-  # beginner, easy, medium, hard, challenge
-  level: ''
-  tags: ''
-  contest:
-    name: ''
-    url: ''
-    code: ''
-statement: >
-input: |
-output: |
-constraints: >
-examples:
-  - input: |
-    output: |
-    explanation: >
-"""
+from cptool.yaml import ProblemYaml
 
 
 class ProblemYamlGenerator:
     def __init__(self, problem_name: str):
         self._problem_name = problem_name
-        self._yaml = YamlFile()
-        self._yaml.load(YAML_DEFAULT)
-        self._content = self._yaml.content
+        self._yaml = ProblemYaml()
 
-    def generate(self, yaml_file: Path):
+    def generate(self, interactive: bool = True):
+        if not interactive:
+            self._yaml.set_basic_info(self._problem_name)
+            return self._yaml
         if io.confirm(
             "Would you like to scrap problem information from URL?\n"
             "  Supporting sites: CodeChef.\n"
@@ -48,13 +24,12 @@ class ProblemYamlGenerator:
 
         io.line("Generated file")
         io.line()
-        self._yaml.dump(stream=sys.stdout)
+        print(self._yaml.export())
         io.line()
 
         if not io.confirm("Do you confirm generation? (yes/no) [yes] ", default=True):
             raise errors.CptoolError("command aborted.")
-
-        self._yaml.dump(stream=yaml_file)
+        return self._yaml
 
     def _manual(self):
         name = io.ask(
@@ -65,9 +40,7 @@ class ProblemYamlGenerator:
 
         url = io.ask("Problem URL []: ", default="")
 
-        self._content["name"] = name
-        self._content["code"] = code
-        self._content["url"] = url
+        self._yaml.set_basic_info(name, code, url)
 
     def _scraping(self):
         pass

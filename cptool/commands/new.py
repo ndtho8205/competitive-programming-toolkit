@@ -15,8 +15,8 @@ class NewCommand:
             "path", metavar="<path>", type=str, help="problem name or a specified path",
         )
 
-    def handle(self, path: str):
-        problem_dir = Path.cwd() / path
+    def handle(self, path: str, interactive: bool = True):
+        problem_dir = Path.cwd() / Path(path)
         problem_name = problem_dir.name
 
         if problem_dir.exists() and problem_dir.is_dir():
@@ -24,10 +24,10 @@ class NewCommand:
                 "destination `{}` already exists.".format(problem_dir)
             )
 
-        template.create(problem_dir)
+        template.create(problem_dir, interactive)
 
         print(
             "Successfully created problem `{}` in `{}`".format(
-                problem_name, problem_dir.relative_to(Path.cwd())
+                problem_name, problem_dir
             )
         )

@@ -64,7 +64,7 @@ class Style:
         self.formats = formats
 
     def render_code(self):
-        return "\033[{}m".format(self.fg, self.bg, self.formats)
+        return "\033[{}{}{}m".format(self.fg, self.bg, self.formats)
 
 
 class Colorize:
@@ -72,7 +72,7 @@ class Colorize:
     WARNING = Style(fg="", bg="", formats=[""])
     ERROR = Style(fg="", bg="", formats=[""])
 
-    def __init__():
+    def __init__(self):
         pass
 
     def colorize(self, text, style):

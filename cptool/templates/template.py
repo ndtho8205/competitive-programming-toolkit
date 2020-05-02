@@ -22,11 +22,11 @@ if __name__ == "__main__":
 """
 
 
-def create(problem_dir: Path):
+def create(problem_dir: Path, interactive=True):
     problem_dir.mkdir(parents=True, exist_ok=True)
 
     _create_structure(problem_dir)
-    _create_problem_yaml(problem_dir)
+    _create_problem_yaml(problem_dir, interactive)
     _create_readme(problem_dir)
 
 
@@ -45,9 +45,9 @@ def _create_structure(path: Path):
         f.write(TEST_CASE_GENERATOR_DEFAULT)
 
 
-def _create_problem_yaml(path: Path):
-    yaml_file = path / "problem.yaml"
-    ProblemYamlGenerator(path.name).generate(yaml_file)
+def _create_problem_yaml(path: Path, interactive: bool = True):
+    problem_yaml = ProblemYamlGenerator(path.name).generate(interactive)
+    problem_yaml.export(path / "problem.yaml")
 
 
 def _create_readme(path: Path):
