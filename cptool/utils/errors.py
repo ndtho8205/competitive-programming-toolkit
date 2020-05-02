@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import List
 
 
 class Error(Exception):
@@ -13,25 +14,19 @@ class CptoolError(Error):
         self.message = message
 
 
-class CommandNotImplemented(Error):
-    def __init__(self, command: str):
-        self.message = f"command `{command}` has not been implemented yet."
+class NotFoundKey(Error):
+    def __init__(self, keys: List[str]):
+        self.message = "not found keys: {}".format(", ".join(keys))
 
 
-class FileNotFound(Error):
-    def __init__(self, path: Path):
-        self.message = f"`{path}` does not exists."
+class UnsupportedKey(Error):
+    def __init__(self, keys: List[str]):
+        self.message = "key type: {}".format(", ".join(keys))
 
 
-class NotADirectory(Error):
-    def __init__(self, path: Path):
-        self.message = f"`{path}` is not a directory."
-
-
-# TODO: DELETE
-class DirectoryExists(Error):
-    def __init__(self, path: Path):
-        self.message = f"destination `{path}` already exists."
+class KeyTypeError(Error):
+    def __init__(self, key: str, expected_type: str):
+        self.message = f"key `{key}` should be a `{expected_type}`."
 
 
 class TestgenNotImplemented(Error):

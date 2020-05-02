@@ -2,7 +2,12 @@ from pathlib import Path
 
 import pytest
 
-from cptool.yaml.yaml_file import YamlFile
+from cptool.utils.yaml_file import YamlFile
+
+FIXTURES = Path(__file__).parent / "fixtures"
+test_yaml_file = FIXTURES / "test.yaml"
+raw_problem_yaml_file = FIXTURES / "raw_problem.yaml"
+formatted_problem_yaml_file = FIXTURES / "formatted_problem.yaml"
 
 
 @pytest.fixture
@@ -11,8 +16,7 @@ def yamlfile():
 
 
 def test_load_from_file(yamlfile):
-    yaml_test_file = Path(__file__).parent / "test.yaml"
-    content = yamlfile.load(yaml_test_file)
+    content = yamlfile.load(test_yaml_file)
 
     assert content["title"] == "YAML Example"
 
@@ -38,8 +42,7 @@ def test_load_from_str(yamlfile):
 
 
 def test_load_from_stream(yamlfile):
-    yaml_test_file = Path(__file__).parent / "test.yaml"
-    with yaml_test_file.open("r") as f:
+    with test_yaml_file.open("r") as f:
         content = yamlfile.load(f)
 
     assert content["title"] == "YAML Example"
@@ -73,13 +76,10 @@ def test_folded_and_literal(yamlfile, content, expected):
 
 
 def test_problem_yaml(yamlfile):
-    raw_file = Path(__file__).parent / "raw_problem.yaml"
-    formatted_file = Path(__file__).parent / "formatted_problem.yaml"
-
-    content = yamlfile.load(raw_file)
+    content = yamlfile.load(raw_problem_yaml_file)
     dumped_str = yamlfile.dump(content)
 
-    with formatted_file.open("r") as f:
+    with formatted_problem_yaml_file.open("r") as f:
         expected = f.read()
 
     assert dumped_str == expected

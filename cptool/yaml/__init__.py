@@ -1,3 +1,4 @@
-from cptool.yaml.yaml_file import YamlFile
+from cptool.yaml.problem_yaml import ProblemYaml
+from cptool.yaml.problem_yaml_validator import ProblemYamlValidator
 
-__all__ = ["YamlFile"]
+__all__ = ["ProblemYaml", "ProblemYamlValidator"]

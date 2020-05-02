@@ -1,9 +1,9 @@
 import sys
 from pathlib import Path
 
+from cptool.utils import YamlFile
 from cptool.utils import console_io as io
 from cptool.utils import errors
-from cptool.yaml import YamlFile
 
 YAML_DEFAULT = u"""\
 name: ''
