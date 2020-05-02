@@ -32,6 +32,10 @@ def test_correct(validator):
             NotFoundKey(["metadata.level", "metadata.contest.name"]),
         ),
         (
+            "code:\nname:\ninput: >\nmetadata:\n  level:\n  contest:\n    name:\n",
+            UnsupportedKey(["code"]),
+        ),
+        (
             "name:\ninput:\nmetadata:\n  level:\n  contest:\n    name:\n",
             KeyTypeError("input", "folded string, indicated by >"),
         ),
