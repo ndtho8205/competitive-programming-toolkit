@@ -6,17 +6,20 @@ authors = ["Tho Nguyen"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
-pyyaml = "^5.3.1"
 beautifulsoup4 = "^4.9.0"
+"ruamel.yaml" = "^0.16.10"
 
 [tool.poetry.dev-dependencies]
 flake8 = "*"
 flake8-docstrings = "*"
 flake8-rst-docstrings = "*"
-pylint = "*"
+mypy = "^0.770"
+isort = "^4.3.21"
 black = "==19.10b0"
 pre-commit = "*"
 ipython = "^7.13.0"
+pytest = "^5.4.1"
+pytest-cov = "^2.8.1"
 
 [build-system]
 requires = ["poetry>=0.12"]

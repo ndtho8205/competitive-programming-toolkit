@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from cptool.templates.problem_yaml import ProblemYamlGenerator
+from cptool.templates.problem_yaml_generator import ProblemYamlGenerator
 
 TEST_CASE_GENERATOR_DEFAULT = u"""\
 from typing import Callable

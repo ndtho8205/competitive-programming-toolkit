@@ -1,0 +1,13 @@
+title: YAML Example
+special: あ
+foo: >
+  this is not a normal string it
+  spans more than
+  one line
+
+  see?
+
+
+stuff:
+  - foo: 'bar'
+  - bar

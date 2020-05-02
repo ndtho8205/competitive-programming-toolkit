@@ -1,10 +1,9 @@
 import sys
 from pathlib import Path
 
-from cptool.utils import errors
 from cptool.utils import console_io as io
-from cptool.utils.yaml_file import YamlFile
-
+from cptool.utils import errors
+from cptool.yaml import YamlFile
 
 YAML_DEFAULT = u"""\
 name: ''
@@ -18,14 +17,14 @@ metadata:
     name: ''
     url: ''
     code: ''
-statement: >-2
-input: >-2
-output: >-2
-constraints: >-2
+statement: >
+input: |
+output: |
+constraints: >
 examples:
-  - input: >-2
-    output: >-2
-    explanation: >-2
+  - input: |
+    output: |
+    explanation: >
 """
 
 
