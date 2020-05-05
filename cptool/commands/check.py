@@ -1,3 +1,8 @@
+from pathlib import Path
+
+from cptool import Cptool
+
+
 class CheckCommand:
     """Check the validity of the `project.toml` file."""
 
@@ -8,7 +13,5 @@ class CheckCommand:
         pass
 
     def handle(self):
-        # yaml_file = XXX.locate(Path.cwd())
-        # results = ProblemYaml.validate(yaml_file)
-        # raise errors.CptoolError("{}".format(results))
-        raise NotImplementedError("command `check` has not been implemented yet")
+        self._cptool = Cptool(Path.cwd())
+        print("`problem.yaml` is valid!")

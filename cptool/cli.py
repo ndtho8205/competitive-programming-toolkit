@@ -5,7 +5,6 @@ from cptool import commands
 from cptool.utils import errors
 from cptool.version import VERSION
 
-
 SUBCOMMANDS = {
     "new": commands.NewCommand(),
     "scrap": commands.ScrapCommand(),
@@ -23,7 +22,10 @@ def main():
         try:
             SUBCOMMANDS[args.command](args)
         except KeyboardInterrupt:
-            raise errors.CptoolError("command aborted.")
+            aborted = errors.CptoolError("command aborted.")
+            return aborted.get_message()
+        except errors.Error as e:
+            return e.get_message()
     else:
         # parser.print_help()
         raise errors.CptoolError("command {} not found.".format(args.command))
