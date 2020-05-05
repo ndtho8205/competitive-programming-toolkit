@@ -24,7 +24,7 @@ class NewCommand:
                 "destination `{}` already exists.".format(problem_dir)
             )
 
-        template.create(problem_dir, interactive)
+        template.create(problem_dir)
 
         print(
             "Successfully created problem `{}` in `{}`".format(

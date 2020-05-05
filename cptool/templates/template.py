@@ -22,7 +22,7 @@ if __name__ == "__main__":
 """
 
 
-def create(problem_dir: Path, interactive=True):
+def create(problem_dir: Path):
     problem_dir.mkdir(parents=True, exist_ok=True)
 
     _create_structure(problem_dir)

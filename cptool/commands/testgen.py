@@ -2,7 +2,9 @@ import sys
 from importlib import machinery, util
 from pathlib import Path
 
-from cptool.utils import errors, rand
+from cptool import Cptool
+from cptool.utils import rand
+from cptool.utils.errors import CptoolError
 
 
 class TestgenCommand:
@@ -16,32 +18,39 @@ class TestgenCommand:
             "n", metavar="<n>", type=int, help="number of test cases to generated"
         )
 
-    def handle(n: int):
-        generator = self._load_testgen_code(testgen_code_path)
+    def handle(self, n: int):
+        self._cptool = Cptool(Path.cwd())
+        generator_file = self._cptool.generator_test_cases_file()
+        generator = self._load_generator(generator_file)
 
-        output_dir.mkdir(parents=True, exist_ok=True)
+        generated_dir = self._cptool.generated_test_cases_dir()
+        generated_dir.mkdir(parents=True, exist_ok=True)
 
         format_name = f"0{len(str(n))}"
-        print(f"Generating test cases in `{output_dir}`")
-        for i in range(0, n):
+        print(f"Generating test cases in `{generated_dir}`")
+        for i in range(1, n + 1):
             # TODO: ask before overwrite test cases
             # TODO: fix stack trace when test_generator raises exception
             try:
-                sys.stdout = open(output_dir / f"{i:{format_name}}.in", "w")
-                test_generator.generate(rand.random)
+                sys.stdout = open(generated_dir / f"{i:{format_name}}.in", "w")
+                generator.generate(rand.random)
             except NotImplementedError:
-                raise errors.TestgenNotImplemented(testgen_code_path)
+                raise CptoolError(
+                    "`{}` must be implemented first before generating test cases.".format(
+                        generator_file
+                    )
+                )
             finally:
                 sys.stdout.close()
                 sys.stdout = sys.__stdout__
 
         print(f"Successfully generated {n} test cases")
 
-    def _load_testgen_code(self, testgen_code_path: Path):
-        if not (testgen_code_path.exists() and testgen_code_path.is_file()):
-            raise errors.FileNotFound(testgen_code_path)
+    def _load_generator(self, generator_file: Path):
+        if not (generator_file.exists() and generator_file.is_file()):
+            raise FileNotFoundError("`{generator_file}` not found.")
 
-        loader = machinery.SourceFileLoader("testgen", str(testgen_code_path))
+        loader = machinery.SourceFileLoader("testgen", str(generator_file))
         spec = util.spec_from_loader(loader.name, loader)
         mod = util.module_from_spec(spec)
         loader.exec_module(mod)

@@ -13,13 +13,13 @@ class Cptool:
     def locale_problem_yaml(self, path: Path) -> Path:
         candidates = [path]
         candidates.extend(path.parents)
-        for path in candidates:
-            problem_yaml_file = path / "problem.yaml"
+        for p in candidates:
+            problem_yaml_file = p / "problem.yaml"
             if problem_yaml_file.exists():
                 return problem_yaml_file
         else:
             raise CptoolError(
-                "could not find a problem.yaml file in {path} or its parents"
+                f"could not find a `problem.yaml` file in `{path}` or its parents"
             )
 
     def codes_dir(self):

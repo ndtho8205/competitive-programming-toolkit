@@ -33,13 +33,6 @@ class KeyTypeError(Error):
         self.message = f"problem.yaml is invalid: `{key}` should have type `{want}`."
 
 
-class TestgenNotImplemented(Error):
-    def __init__(self, path: Path):
-        self.message = (
-            f"`{path}` must be implemented first before generating test cases."
-        )
-
-
 class LanguageNotSupported(Error):
     def __init__(self, filetype: Path):
         self.message = f"language `{filetype}` is not supported."

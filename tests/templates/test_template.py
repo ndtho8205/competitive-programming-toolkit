@@ -11,7 +11,7 @@ def test_create(tmpdir, mocker):
 
     problem_name = "test_problem"
     problem_dir = Path(tmpdir) / problem_name
-    create(problem_dir, interactive=False)
+    create(problem_dir)
 
     assert (problem_dir / "codes").exists()
     assert (problem_dir / "test_cases").exists()
