@@ -3,7 +3,7 @@ code: TEST
 url: https://www.codechef.com/LRNDSA01/problems/TEST
 metadata:
   # beginner, easy, medium, hard, challenge
-  level: Beginner
+  level: beginner
   tags: ''
   contest:
     name: DSA Learning Series - Contest 1

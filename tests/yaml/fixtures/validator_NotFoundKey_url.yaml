@@ -1,0 +1,27 @@
+name: 'Life, the Universe, and Everything'
+code: 'TEST'
+metadata:
+  # beginner, easy, medium, hard, challenge
+  level: 'beginner'
+  tags: ''
+  contest:
+    name: 'DSA Learning Series - Contest 1'
+    url: ''
+    code: ''
+statement: >
+  Your program is to use the brute-force approach in order to find the Answer to Life, the Universe, and Everything. More precisely... rewrite small numbers from input to output. Stop processing input after reading in the number 42. All numbers at input are integers of one or two digits.
+input: >
+output: >
+constraints: >
+examples:
+  - input: |
+      1
+      2
+      88
+      42
+      99
+    output: |
+      1
+      2
+      88
+    explanation: >

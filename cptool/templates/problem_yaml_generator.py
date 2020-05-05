@@ -8,10 +8,7 @@ class ProblemYamlGenerator:
         self._problem_name = problem_name
         self._yaml = ProblemYaml()
 
-    def generate(self, interactive: bool = True):
-        if not interactive:
-            self._yaml.set_basic_info(self._problem_name)
-            return self._yaml
+    def generate(self):
         if io.confirm(
             "Would you like to scrap problem information from URL?\n"
             "  Supporting sites: CodeChef.\n"

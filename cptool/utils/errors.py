@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List
+from typing import List, Union
 
 
 class Error(Exception):
@@ -14,19 +14,23 @@ class CptoolError(Error):
         self.message = message
 
 
-class NotFoundKey(Error):
-    def __init__(self, keys: List[str]):
-        self.message = "not found keys: {}".format(", ".join(keys))
+class NotFoundKeyError(Error):
+    def __init__(self, keys: Union[str, List[str]]):
+        self.message = "problem.yaml is invalid: not found key(s):\n  {}".format(
+            "\n  ".join(keys)
+        )
 
 
-class UnsupportedKey(Error):
-    def __init__(self, keys: List[str]):
-        self.message = "key type: {}".format(", ".join(keys))
+class UnsupportedKeyError(Error):
+    def __init__(self, keys: Union[str, List[str]]):
+        self.message = "problem.yaml is invalid: unsupported key(s):\n  {}".format(
+            "\n   ".join(keys)
+        )
 
 
 class KeyTypeError(Error):
-    def __init__(self, key: str, expected_type: str):
-        self.message = f"key `{key}` should be a `{expected_type}`."
+    def __init__(self, key: str, want: str):
+        self.message = f"problem.yaml is invalid: `{key}` should have type `{want}`."
 
 
 class TestgenNotImplemented(Error):
