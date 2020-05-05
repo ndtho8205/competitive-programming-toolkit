@@ -1,7 +1,6 @@
 from pathlib import Path
 
 import pytest
-
 from ruamel.yaml.scalarstring import FoldedScalarString, LiteralScalarString
 
 from cptool.yaml import ProblemYaml
@@ -101,3 +100,7 @@ def test_add_examples(problem_yaml):
     assert content_examples[0]["input"] == input
     assert content_examples[0]["output"] == output
     assert content_examples[0]["explanation"] == explanation
+
+    assert isinstance(content_examples[0]["input"], LiteralScalarString)
+    assert isinstance(content_examples[0]["output"], LiteralScalarString)
+    assert isinstance(content_examples[0]["explanation"], FoldedScalarString)
