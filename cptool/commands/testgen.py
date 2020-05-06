@@ -2,7 +2,6 @@ import sys
 from importlib import machinery, util
 from pathlib import Path
 
-from cptool import Cptool
 from cptool.commands import BaseCommand
 from cptool.utils import rand
 from cptool.utils.errors import CptoolError

@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from cptool.yaml import ProblemYaml
-from cptool.utils import errors
 from cptool.utils import console_io as io
+from cptool.utils import errors
+from cptool.yaml import ProblemYaml
 
 TEST_CASE_GENERATOR_DEFAULT = """\
 from typing import Callable
@@ -27,7 +27,6 @@ if __name__ == "__main__":
 class Template:
     def __init__(self, interactive: bool):
         self._interactive = interactive
-        self._problem_yaml = None
 
     def create(self, problem_dir: Path):
         problem_dir.mkdir(parents=True, exist_ok=True)
