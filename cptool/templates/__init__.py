@@ -1,4 +1,3 @@
-from cptool.templates.problem_yaml_generator import ProblemYamlGenerator
-from cptool.templates.template import create
+from cptool.templates.template import Template
 
-__all__ = ["create", "ProblemYamlGenerator"]
+__all__ = ["Template"]

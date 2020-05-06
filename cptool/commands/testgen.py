@@ -3,11 +3,12 @@ from importlib import machinery, util
 from pathlib import Path
 
 from cptool import Cptool
+from cptool.commands import BaseCommand
 from cptool.utils import rand
 from cptool.utils.errors import CptoolError
 
 
-class TestgenCommand:
+class TestgenCommand(BaseCommand):
     """Generate a number of test cases using your testgen/generator.py implementation."""
 
     def __call__(self, args):
@@ -19,11 +20,10 @@ class TestgenCommand:
         )
 
     def handle(self, n: int):
-        self._cptool = Cptool(Path.cwd())
-        generator_file = self._cptool.generator_test_cases_file()
+        generator_file = self.cptool.test_cases_generator_file
         generator = self._load_generator(generator_file)
 
-        generated_dir = self._cptool.generated_test_cases_dir()
+        generated_dir = self.cptool.generated_test_cases_dir
         generated_dir.mkdir(parents=True, exist_ok=True)
 
         format_name = f"0{len(str(n))}"

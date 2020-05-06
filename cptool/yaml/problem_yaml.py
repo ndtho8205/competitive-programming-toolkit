@@ -1,3 +1,4 @@
+import copy
 from collections import OrderedDict
 from pathlib import Path
 from typing import Union
@@ -10,15 +11,19 @@ from cptool.yaml.validator import ProblemYamlValidator
 
 
 class ProblemYaml:
-    def __init__(self, problem_yaml_file: Union[str, Path] = None):
+    def __init__(self, problem_yaml: Union[str, Path] = None):
         self._yaml = YamlFile()
 
-        if problem_yaml_file:
-            if ProblemYamlValidator().validate(problem_yaml_file):
-                self._content = self._yaml.load(problem_yaml_file)
+        if problem_yaml:
+            if ProblemYamlValidator().validate(problem_yaml):
+                self._content = self._yaml.load(problem_yaml)
         else:
             self._content = self._yaml.load(YAML_DEFAULT)
             self._content["examples"] = []
+
+    @property
+    def content(self):
+        return copy.deepcopy(self._content)
 
     def set_basic_info(self, name: str = "", code: str = "", url: str = ""):
         self._content["name"] = name
@@ -53,5 +58,11 @@ class ProblemYaml:
         )
         self._content["examples"].append(example)
 
-    def export(self, stream=None, format="yaml"):
-        return self._yaml.dump(self._content, stream)
+    def __str__(self):
+        return self._yaml.dump(self._content, None)
+
+    def save(self, path: Path):
+        return self._yaml.dump(self._content, path)
+
+    def export(self, stream=None, format="markdown"):
+        raise NotImplementedError()

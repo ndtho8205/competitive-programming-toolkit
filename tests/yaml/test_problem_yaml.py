@@ -23,10 +23,17 @@ def problem_yaml():
         ("problem.yaml", "problem_formatted.yaml"),
     ],
 )
-def test_load_and_save_file(input_file, output_file):
-    got = ProblemYaml(FIXTURES / input_file).export()
-    want = ProblemYaml(FIXTURES / output_file).export()
+def test_load_and_save_file(input_file, output_file, tmpdir):
+    got_yaml_file = Path(tmpdir) / "problem.yaml"
+    ProblemYaml(FIXTURES / input_file).save(got_yaml_file)
+
+    with got_yaml_file.open("r") as f:
+        got = f.read()
+
+    want = str(ProblemYaml(FIXTURES / output_file))
+
     assert got == want
+    assert got_yaml_file.exists()
 
 
 def test_set_basic_info(problem_yaml):
@@ -35,13 +42,14 @@ def test_set_basic_info(problem_yaml):
     url = "https://www.test.com"
 
     problem_yaml.set_basic_info(name, code, url)
+    content = problem_yaml.content
 
-    assert problem_yaml._content["name"] == name
-    assert problem_yaml._content["code"] == code
-    assert problem_yaml._content["url"] == url
-    assert type(problem_yaml._content["name"]) == str
-    assert type(problem_yaml._content["code"]) == str
-    assert type(problem_yaml._content["url"]) == str
+    assert content["name"] == name
+    assert content["code"] == code
+    assert content["url"] == url
+    assert type(content["name"]) == str
+    assert type(content["code"]) == str
+    assert type(content["url"]) == str
 
 
 def test_set_metadata(problem_yaml):
@@ -53,7 +61,7 @@ def test_set_metadata(problem_yaml):
 
     problem_yaml.set_metadata(level, tags, contest_name, contest_url, contest_code)
 
-    metadata = problem_yaml._content["metadata"]
+    metadata = problem_yaml.content["metadata"]
 
     assert metadata["level"] == level
     assert metadata["tags"] == tags
@@ -75,7 +83,7 @@ def test_set_statement(problem_yaml):
     constraints = "lorem ipsum"
 
     problem_yaml.set_statement(statement, input, output, constraints)
-    content = problem_yaml._content
+    content = problem_yaml.content
 
     assert content["statement"] == statement
     assert content["input"] == input
@@ -94,7 +102,7 @@ def test_add_examples(problem_yaml):
     explanation = ""
 
     problem_yaml.add_examples(input, output, explanation)
-    content_examples = problem_yaml._content["examples"]
+    content_examples = problem_yaml.content["examples"]
 
     assert len(content_examples) == 1
     assert content_examples[0]["input"] == input
@@ -104,3 +112,8 @@ def test_add_examples(problem_yaml):
     assert isinstance(content_examples[0]["input"], LiteralScalarString)
     assert isinstance(content_examples[0]["output"], LiteralScalarString)
     assert isinstance(content_examples[0]["explanation"], FoldedScalarString)
+
+
+def test_export_to_markdown(problem_yaml):
+    with pytest.raises(NotImplementedError):
+        problem_yaml.export(format="markdown")
