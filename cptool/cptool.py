@@ -41,3 +41,19 @@ class Cptool:
     @property
     def test_cases_generator_file(self):
         return self._problem_dir / "test_cases" / "generator.py"
+
+    @property
+    def compiled_codes_dir(self):
+        return self._problem_dir / "target" / "compiled_codes"
+
+    @property
+    def target_generated_test_cases_dir(self):
+        return self._problem_dir / "target" / "generated"
+
+    @property
+    def target_handmade_test_cases_dir(self):
+        return self._problem_dir / "target" / "handmade"
+
+    @property
+    def target_examples_test_cases_dir(self):
+        return self._problem_dir / "target" / "examples"

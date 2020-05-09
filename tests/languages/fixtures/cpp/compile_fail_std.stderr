@@ -1,0 +1,9 @@
+compile_fail_std.cpp: In function ‘int main()’:
+compile_fail_std.cpp:5:3: error: ‘cout’ was not declared in this scope
+   cout << n;
+   ^~~~
+compile_fail_std.cpp:5:3: note: suggested alternative:
+In file included from compile_fail_std.cpp:1:0:
+/usr/include/c++/7/iostream:61:18: note:   ‘std::cout’
+   extern ostream cout;  /// Linked to standard output
+                  ^~~~

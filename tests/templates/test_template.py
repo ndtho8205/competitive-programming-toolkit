@@ -71,7 +71,9 @@ def test_interactive_create_problem_yaml_manual(interactive_template, tmpdir, mo
     assert content["url"] == problem_url
 
 
-def test_interactive_create_problem_yaml_aborted(interactive_template, tmpdir, mocker):
+def test_interactive_create_problem_yaml_aborted_error(
+    interactive_template, tmpdir, mocker
+):
     problem_dir = Path(tmpdir) / PROBLEM_NAME
 
     mocker.patch("sys.stdout", new_callable=StringIO)

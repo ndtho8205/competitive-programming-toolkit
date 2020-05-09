@@ -1,0 +1,9 @@
+error[E0423]: expected function, found macro `println`
+ --> compile_fail_macro.rs:2:5
+  |
+2 |     println("Hello, world!");
+  |     ^^^^^^^ help: use `!` to invoke the macro: `println!`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0423`.

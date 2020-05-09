@@ -17,7 +17,7 @@ def noninteractive_template():
     return Template(interactive=False)
 
 
-def test_load_generator_file_not_found(testgen_command, tmpdir):
+def test_load_generator_file_not_found_error(testgen_command, tmpdir):
     with pytest.raises(FileNotFoundError):
         testgen_command._load_generator(Path(tmpdir) / "generator.py")
 

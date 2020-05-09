@@ -1,0 +1,4 @@
+compile_fail_undeclared.cpp: In function ‘int main()’:
+compile_fail_undeclared.cpp:4:3: error: ‘a’ was not declared in this scope
+   a = 0;
+   ^

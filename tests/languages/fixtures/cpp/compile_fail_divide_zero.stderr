@@ -1,0 +1,8 @@
+compile_fail_divide_zero.cpp: In function ‘int main()’:
+compile_fail_divide_zero.cpp:4:13: error: division by zero [-Werror=div-by-zero]
+   int a = 10/0;
+           ~~^~
+compile_fail_divide_zero.cpp:4:7: error: unused variable ‘a’ [-Werror=unused-variable]
+   int a = 10/0;
+       ^
+cc1plus: all warnings being treated as errors

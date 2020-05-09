@@ -36,3 +36,10 @@ def test_correct_problem_dir(tmpdir, mocker):
     assert (
         cptool.test_cases_generator_file == problem_dir / "test_cases" / "generator.py"
     )
+
+    assert cptool.compiled_codes_dir == problem_dir / "target" / "compiled_codes"
+    assert (
+        cptool.target_generated_test_cases_dir == problem_dir / "target" / "generated"
+    )
+    assert cptool.target_handmade_test_cases_dir == problem_dir / "target" / "handmade"
+    assert cptool.target_examples_test_cases_dir == problem_dir / "target" / "examples"

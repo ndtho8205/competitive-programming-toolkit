@@ -8,6 +8,7 @@ repos:
     rev: 3.8.0a2
     hooks:
       - id: flake8
+        exclude: ^**/fixtures/.py$
         additional_dependencies: ['pydocstyle', 'flake8-docstrings', 'flake8-rst-docstrings']
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: 'master'
