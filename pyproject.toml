@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cptool"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Tho Nguyen"]
 
@@ -21,6 +21,9 @@ ipython = "^7.13.0"
 pytest = "^5.4.1"
 pytest-cov = "^2.8.1"
 pytest-mock = "^3.1.0"
+
+[tool.poetry.scripts]
+cptool = "cptool:run_main"
 
 [build-system]
 requires = ["poetry>=0.12"]
