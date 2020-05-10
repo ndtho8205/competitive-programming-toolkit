@@ -1,6 +1,6 @@
 import subprocess
 from pathlib import Path
-from typing import List, Union
+from typing import List, Optional, Union
 
 from cptool.utils import errors
 
@@ -10,7 +10,7 @@ class BaseCodeFile:
 
     def __init__(self, code_file: Path):
         self.code_file = code_file
-        self.compiled_code_file = None
+        self.compiled_code_file: Union[Path, None] = None
 
     def compile_instruction(self, code_file: Path, compiled_code_file: Path):
         raise NotImplementedError()
@@ -34,7 +34,7 @@ class BaseCodeFile:
 
         self.compiled_code_file = compiled_code_file
 
-    def execute_instruction(self, code_file: Path, compiled_code_file: Path):
+    def execute_instruction(self, code_file: Path, compiled_code_file: Optional[Path]):
         return [compiled_code_file]
 
     def execute(
@@ -67,13 +67,16 @@ class BaseCodeFile:
             with input.open("r") as f:
                 input = f.read()
 
-        result = subprocess.run(
-            args,
-            shell=shell,
-            input=input,
-            timeout=timeout,
-            encoding="utf-8",
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-        )
-        return (result.returncode, result.stdout, result.stderr)
+        try:
+            result = subprocess.run(
+                args,
+                shell=shell,
+                input=input,
+                timeout=timeout,
+                encoding="utf-8",
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            return (result.returncode, result.stdout, result.stderr)
+        except subprocess.TimeoutExpired:
+            return (1, "", "timeout expired.")

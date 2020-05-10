@@ -29,17 +29,37 @@ def test_correct_problem_dir(tmpdir, mocker):
     got_problem_yaml_file = Cptool.locale_problem_yaml(dir)
     cptool = Cptool(got_problem_yaml_file)
 
-    assert cptool.codes_dir == problem_dir / "codes"
-    assert cptool.generated_test_cases_dir == problem_dir / "test_cases" / "generated"
-    assert cptool.handmade_test_cases_dir == problem_dir / "test_cases" / "handmade"
-    assert cptool.examples_test_cases_dir == problem_dir / "test_cases" / "examples"
+    assert cptool.codes_dir.absolute() == problem_dir / "codes"
     assert (
-        cptool.test_cases_generator_file == problem_dir / "test_cases" / "generator.py"
+        cptool.generated_test_cases_dir.absolute()
+        == problem_dir / "test_cases" / "generated"
+    )
+    assert (
+        cptool.handmade_test_cases_dir.absolute()
+        == problem_dir / "test_cases" / "handmade"
+    )
+    assert (
+        cptool.examples_test_cases_dir.absolute()
+        == problem_dir / "test_cases" / "examples"
+    )
+    assert (
+        cptool.test_cases_generator_file.absolute()
+        == problem_dir / "test_cases" / "generator.py"
     )
 
-    assert cptool.compiled_codes_dir == problem_dir / "target" / "compiled_codes"
     assert (
-        cptool.target_generated_test_cases_dir == problem_dir / "target" / "generated"
+        cptool.compiled_codes_dir.absolute()
+        == problem_dir / "target" / "compiled_codes"
     )
-    assert cptool.target_handmade_test_cases_dir == problem_dir / "target" / "handmade"
-    assert cptool.target_examples_test_cases_dir == problem_dir / "target" / "examples"
+    assert (
+        cptool.target_generated_test_cases_dir.absolute()
+        == problem_dir / "target" / "generated"
+    )
+    assert (
+        cptool.target_handmade_test_cases_dir.absolute()
+        == problem_dir / "target" / "handmade"
+    )
+    assert (
+        cptool.target_examples_test_cases_dir.absolute()
+        == problem_dir / "target" / "examples"
+    )
