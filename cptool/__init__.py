@@ -1,9 +1,14 @@
-from cptool import version
-from cptool.cptool import Cptool
+import sys
 
 from .cli import main
+from .version import VERSION
 
-__version__ = version.VERSION
-del version
+__version__ = VERSION
 
-__all__ = ["__version__", "main", "Cptool"]
+
+def run_main():
+    sys.exit(main())
+
+
+if __name__ == "__main__":
+    run_main()

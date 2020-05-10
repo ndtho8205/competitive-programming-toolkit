@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from cptool import Cptool
 from cptool.commands import BaseCommand
+from cptool.cptool import Cptool
 from cptool.yaml import ProblemYamlValidator
 
 

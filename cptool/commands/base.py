@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from cptool import Cptool
+from cptool.cptool import Cptool
 
 
 class BaseCommand:
