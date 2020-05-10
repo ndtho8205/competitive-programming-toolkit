@@ -27,8 +27,10 @@ def main():
         except errors.Error as e:
             return e.get_message()
     else:
-        # parser.print_help()
-        raise errors.CptoolError("command {} not found.".format(args.command))
+        parser.print_help()
+        return errors.CptoolError(
+            "command {} not found.".format(args.command)
+        ).get_message()
 
 
 def _create_parser():
