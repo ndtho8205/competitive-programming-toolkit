@@ -5,8 +5,8 @@ import pytest
 
 from cptool.templates import Template
 from cptool.templates.template import TEST_CASE_GENERATOR_DEFAULT
-from cptool.yaml import ProblemYaml
 from cptool.utils.errors import CptoolError
+from cptool.yaml import ProblemYaml
 
 PROBLEM_NAME = "test_problem"
 
@@ -41,8 +41,7 @@ def test_create_test_cases_generator(interactive_template, tmpdir):
     generator_file = problem_dir / "test_cases" / "generator.py"
     assert generator_file.exists()
 
-    with generator_file.open("r") as f:
-        content = f.read()
+    content = generator_file.read_text(encoding="utf-8")
     assert content == TEST_CASE_GENERATOR_DEFAULT
 
 

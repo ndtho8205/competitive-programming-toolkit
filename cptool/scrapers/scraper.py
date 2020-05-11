@@ -13,7 +13,7 @@ class Scraper:
     def soup(self):
         return self._soup
 
-    def scrap(self, url):
+    def scrape(self, url):
         data = self._retrieve_webpage(url)
         with Path("/home/ndtho8205/Desktop/retrieve.html").open("w") as f:
             f.write(data.decode())

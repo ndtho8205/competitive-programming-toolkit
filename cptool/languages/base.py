@@ -51,8 +51,7 @@ class BaseCodeFile:
                 execute_instruction, stderr if stderr else stdout
             )
         if output_stream:
-            with output_stream.open("w") as f:
-                f.write(stdout)
+            output_stream.write_text(stdout, encoding="utf-8")
         return stdout
 
     def run(
@@ -64,8 +63,7 @@ class BaseCodeFile:
         timeout: int = None,
     ):
         if isinstance(input, Path):
-            with input.open("r") as f:
-                input = f.read()
+            input = input.read_text(encoding="utf-8")
 
         try:
             result = subprocess.run(

@@ -19,7 +19,7 @@ setup(
     python_requires=">=3.6.0",
     package_dir={"": "."},
     include_package_data=True,
-    packages=["cptool", "cptool.*"],
+    packages=["cptool"],
     install_requires=["beautifulsoup4>=4.9.0", "ruamel.yaml>=0.16.10"],
     entry_points={"console_scripts": ["cptool = cptool:run_main"]},
     zip_safe=False,

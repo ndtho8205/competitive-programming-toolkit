@@ -7,7 +7,7 @@ from cptool.version import VERSION
 
 SUBCOMMANDS = {
     "new": commands.NewCommand(),
-    "scrap": commands.ScrapCommand(),
+    "scrape": commands.ScrapeCommand(),
     "check": commands.CheckCommand(),
     "testgen": commands.TestgenCommand(),
     "test": commands.TestCommand(),

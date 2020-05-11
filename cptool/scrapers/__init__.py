@@ -1,5 +1,5 @@
-from cptool.scrapers.scraper import Scraper
 from cptool.scrapers.codechef import CodeChefScraper
+from cptool.scrapers.scraper import Scraper
 
 
 def get_scraper(url: str):

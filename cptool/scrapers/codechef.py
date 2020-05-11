@@ -1,4 +1,4 @@
-from cptool.scrapers import Scraper
+from cptool.scrapers.scraper import Scraper
 
 
 class CodeChefScraper(Scraper):

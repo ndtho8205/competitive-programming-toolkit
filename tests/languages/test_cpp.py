@@ -47,10 +47,6 @@ def test_execute_success(code_file, tmpdir):
 
 
 def read_pipe(code_file):
-    with code_file.with_suffix(".stdout").open("r") as f:
-        stdout_pipe = f.read()
-
-    with code_file.with_suffix(".stderr").open("r") as f:
-        stderr_pipe = f.read()
-
+    stdout_pipe = code_file.with_suffix(".stdout").read_text(encoding="utf-8")
+    stderr_pipe = code_file.with_suffix(".stderr").read_text(encoding="utf-8")
     return (stdout_pipe, stderr_pipe)

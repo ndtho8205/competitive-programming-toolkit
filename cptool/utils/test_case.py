@@ -25,5 +25,4 @@ class TestCase:
         return None
 
     def _read(self, file: Path):
-        with file.open("r") as f:
-            return f.read().strip()
+        return file.read_text(encoding="utf-8").strip()

@@ -1,9 +1,9 @@
 from pathlib import Path
+
 import pytest
 
 from cptool.utils.errors import KeyTypeError, NotFoundKeyError, UnsupportedKeyError
 from cptool.yaml import YAML_DEFAULT, ProblemYamlValidator
-
 
 FIXTURES = Path(__file__).parent / "fixtures"
 

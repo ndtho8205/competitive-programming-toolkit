@@ -27,8 +27,7 @@ def test_load_and_save_file(input_file, output_file, tmpdir):
     got_yaml_file = Path(tmpdir) / "problem.yaml"
     ProblemYaml(FIXTURES / input_file).save(got_yaml_file)
 
-    with got_yaml_file.open("r") as f:
-        got = f.read()
+    got = got_yaml_file.read_text(encoding="utf-8")
 
     want = str(ProblemYaml(FIXTURES / output_file))
 

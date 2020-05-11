@@ -48,8 +48,7 @@ class Template:
     def create_test_cases_generator(self, problem_dir: Path):
         test_case_generator_file = problem_dir / "test_cases" / "generator.py"
         test_case_generator_file.parent.mkdir(parents=True, exist_ok=True)
-        with test_case_generator_file.open("w", encoding="utf-8") as f:
-            f.write(TEST_CASE_GENERATOR_DEFAULT)
+        test_case_generator_file.write_text(TEST_CASE_GENERATOR_DEFAULT, "utf-8")
 
     def create_problem_yaml(self, problem_dir: Path):
         problem_dir.mkdir(parents=True, exist_ok=True)

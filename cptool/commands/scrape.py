@@ -1,8 +1,8 @@
 from cptool.scrapers.scraper import Scraper
 
 
-class ScrapCommand:
-    """Scrap problem url."""
+class ScrapeCommand:
+    """Scrape problem url."""
 
     def __call__(self, args):
         self.handle(args.url)
@@ -15,5 +15,5 @@ class ScrapCommand:
     def handle(self, url: str = ""):
         url = "https://www.codechef.com/LRNDSA02/problems/STFOOD"
         scraper = Scraper()
-        scraper.scrap(url)
+        scraper.scrape(url)
         print("Successfully scraped problem.")

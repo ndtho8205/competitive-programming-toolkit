@@ -50,8 +50,7 @@ def test_handle_success(testgen_command, noninteractive_template, tmpdir, mocker
 def generate(f_rand):
     return f_rand(0, 10)
     """
-    with generator_file.open("w") as f:
-        f.write(generator_content)
+    generator_file.write_text(generator_content, encoding="utf-8")
 
     mocker.patch.object(Path, "cwd", return_value=problem_dir)
     testgen_command.handle(10)

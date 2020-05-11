@@ -79,7 +79,6 @@ def test_problem_yaml(yamlfile):
     content = yamlfile.load(raw_problem_yaml_file)
     dumped_str = yamlfile.dump(content)
 
-    with formatted_problem_yaml_file.open("r") as f:
-        expected = f.read()
+    expected = formatted_problem_yaml_file.read_text(encoding="utf-8")
 
     assert dumped_str == expected

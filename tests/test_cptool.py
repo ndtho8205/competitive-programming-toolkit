@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from cptool import Cptool
+from cptool.cptool import Cptool
 from cptool.templates import Template
 from cptool.utils.errors import CptoolError
 
