@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "cptool"
 version = "0.2.0"
-description = ""
+description = "A simple toolkit for Competitive Programming."
 authors = ["Tho Nguyen"]
 
 [tool.poetry.dependencies]
