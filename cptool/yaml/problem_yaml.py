@@ -1,8 +1,8 @@
 import copy
-from collections import OrderedDict
 from pathlib import Path
 from typing import Union
 
+from ruamel.yaml.comments import CommentedMap
 from ruamel.yaml.scalarstring import FoldedScalarString, LiteralScalarString
 
 from cptool.utils import YamlFile
@@ -51,7 +51,7 @@ class ProblemYaml:
         self._content["constraints"] = FoldedScalarString(constraints)
 
     def add_examples(self, input: str, output: str, explanation: str):
-        example = OrderedDict(
+        example = CommentedMap(
             input=LiteralScalarString(input),
             output=LiteralScalarString(output),
             explanation=FoldedScalarString(explanation),

@@ -106,8 +106,8 @@ class Template:
         code = scraper.parse_problem_code()
         self._problem_yaml.set_basic_info(name, code, url)
 
-        level = (scraper.parse_metadata_level(),)
-        tags = (scraper.parse_metadata_tags(),)
+        level = scraper.parse_metadata_level()
+        tags = scraper.parse_metadata_tags()
         (contest_name, contest_code, contest_url) = scraper.parse_metadata_contest()
         self._problem_yaml.set_metadata(
             level, tags, contest_name, contest_url, contest_code

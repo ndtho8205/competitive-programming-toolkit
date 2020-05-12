@@ -35,7 +35,7 @@ class CodeChefScraper(Scraper):
         pass
 
     def parse_input(self):
-        input = self._soup.find_all("h3", text="Example")
+        input = self._soup.find_all("h3", text="Input")
         if not input:
             return ""
         p = input[0].find_next_sibling()

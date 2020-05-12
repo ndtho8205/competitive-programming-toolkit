@@ -89,6 +89,7 @@ def test_interactive_create_problem_yaml_aborted_error(
         interactive_template.create_problem_yaml(problem_dir)
 
 
+@pytest.mark.xfail
 def test_interactive_create_problem_yaml_scrape(interactive_template, tmpdir, mocker):
     problem_dir = Path(tmpdir) / PROBLEM_NAME
 
