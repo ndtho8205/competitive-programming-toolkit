@@ -1,4 +1,4 @@
-from cptool.scrapers.scraper import Scraper
+from cptool.scrapers import CodeChefScraper
 
 
 class ScrapeCommand:
@@ -13,7 +13,9 @@ class ScrapeCommand:
         )
 
     def handle(self, url: str = ""):
-        url = "https://www.codechef.com/LRNDSA02/problems/STFOOD"
-        scraper = Scraper()
-        scraper.scrape(url)
-        print("Successfully scraped problem.")
+        scraper = CodeChefScraper(url)
+        print("Problem name:", scraper.parse_problem_name())
+        print("Problem code:", scraper.parse_problem_code())
+        print("Level:", scraper.parse_metadata_level())
+        print("Contest:", scraper.parse_metadata_contest())
+        print("Example:", scraper.parse_example())
