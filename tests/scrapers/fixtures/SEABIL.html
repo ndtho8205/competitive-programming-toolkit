@@ -33,11 +33,11 @@
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window,document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-             fbq('init', '2444182835820350'); 
+             fbq('init', '2444182835820350');
             fbq('track', 'PageView');
             </script>
             <noscript>
-             <img height="1" width="1" 
+             <img height="1" width="1"
             src="https://www.facebook.com/tr?id=2444182835820350&ev=PageView
             &noscript=1"/>
             </noscript>
@@ -337,7 +337,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","username":null});
                                           <div style="float:left; margin:3px 10px 0 0;">Problem code: <span id = "problem-code">SEABIL</span></div>
                                         </div>
 
-                                        
+
                                         <div class='social-button-container'>
                                           <div class='social-button'>
                                             <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -359,9 +359,9 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","username":null});
                                 </table>
                                 <div class="primary-colum-width-left">
                                   <div id="node-9682673" class="node clear-block">
-        
+
     <div class="meta">
-        
+
             </div>
 
     <div class="content">
@@ -369,7 +369,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","username":null});
 
 Sereja likes to play billiards. Here is simplified version of it.
 <p> </p>
-Initially there is a table of size <b>N*N</b>. The table is divided by <b>N+1</b> horizontal and <b>N+1</b> vertical lines. The lines are numbered from <b>0</b>  to <b>N</b> from left to the right and in the same way from <b>0</b> in the top to <b>N</b> in the bottom. The intersection of the horizontal Line <b>i</b> and the vertical Line <b>j</b> is a point which will be denoted by <b>(i,j)</b>. The points <b>(0,0), (0, N), (N, 0), (N, N)</b> are the corners of the table. Initially, there are <b>M</b> balls on the table, at the points <b>(X<sub>i</sub>, Y<sub>i</sub>) (0 ≤ X<sub>i</sub>, Y<sub>i</sub> ≤ N)</b>. Each ball has its cost <b>Z<sub>i</sub></b>. 
+Initially there is a table of size <b>N*N</b>. The table is divided by <b>N+1</b> horizontal and <b>N+1</b> vertical lines. The lines are numbered from <b>0</b>  to <b>N</b> from left to the right and in the same way from <b>0</b> in the top to <b>N</b> in the bottom. The intersection of the horizontal Line <b>i</b> and the vertical Line <b>j</b> is a point which will be denoted by <b>(i,j)</b>. The points <b>(0,0), (0, N), (N, 0), (N, N)</b> are the corners of the table. Initially, there are <b>M</b> balls on the table, at the points <b>(X<sub>i</sub>, Y<sub>i</sub>) (0 ≤ X<sub>i</sub>, Y<sub>i</sub> ≤ N)</b>. Each ball has its cost <b>Z<sub>i</sub></b>.
 <p></p>
 In one move, Sereja can hit any one ball by giving it a velocity <b>(V<sub>x</sub>, V<sub>y</sub>)</b>, (<b>V<sub>x</sub></b> and <b>V<sub>y</sub></b> should belong to the set {-1, 0, 1}) and a starting energy <b>E (1 ≤ E ≤ 4 * N)</b>. After this there will be <b>E</b> actions:
 <ul>
@@ -398,7 +398,7 @@ Sereja wants to make at most <b>4*M</b> moves. Each move also decreases the tota
 <ul>
 <li>For each test case, the first line should be an integer <b>K</b> - the number of moves you want to make.</li>
 <li>The next <b>K</b> lines should contain five numbers <b>X, Y, V<sub>x</sub>, V<sub>y</sub>, E</b>. You should ensure that the point <b>(X, Y)</b> contains some ball at that moment. Otherwise, your solution will be marked as WA.</li>
-</ul> 
+</ul>
 <p> </p>
 
 <h3>Constraints</h3>
@@ -436,12 +436,12 @@ Sereja wants to make at most <b>4*M</b> moves. Each move also decreases the tota
 
 <h3>Explanation</h3>
 
-<p><b>Test case 2.</b> The grid size is <b>N</b> = 100. To get points for the only ball, we should give it velocity (1, 1) and the starting energy at least 2, so it could reach the point (101, 101). The starting energy is 50 in the provided output, what is also allowed and will lead to the ball reaching the point (101, 101) after 2 units of time and giving us 15 points. But because we have made 1 move, the total score reduces by 1, and hence the final total score is 15 - 1 = 14.</p> 
+<p><b>Test case 2.</b> The grid size is <b>N</b> = 100. To get points for the only ball, we should give it velocity (1, 1) and the starting energy at least 2, so it could reach the point (101, 101). The starting energy is 50 in the provided output, what is also allowed and will lead to the ball reaching the point (101, 101) after 2 units of time and giving us 15 points. But because we have made 1 move, the total score reduces by 1, and hence the final total score is 15 - 1 = 14.</p>
 
 <p><b>Test case 3.</b> There are two balls, both with non-positive score (cost). Please note that it's allowed to not make moves at all, as you can see in the provided output.</p>
 
 <h3>Scoring</h3>
-Your judge score for each test case will be calculated as <b>max(total_score, 1)</b>, where <b>total_score</b> is the total score described in the statement. 
+Your judge score for each test case will be calculated as <b>max(total_score, 1)</b>, where <b>total_score</b> is the total score described in the statement.
 If <b>S</b> is your total judge score over all the tests, and if <b>W</b> is the maximum total judge score among all participants, then your displayed score will be equal to <b>S/W</b>.
 <p></p>
 <h3>Test generation</h3>
@@ -458,13 +458,13 @@ Each test will contain <b>T=10</b> and <b>N = 100</b>. <b>M</b> will be generate
     <table cellspacing="0" cellpadding="0" align="left">
         <tr>
             <td width="14%">Author:</td>
-            <td><a href="/users/sereja"><span 
-            class='rating' 
-            style='display: inline-block; 
-                    font-size: 10px; 
+            <td><a href="/users/sereja"><span
+            class='rating'
+            style='display: inline-block;
+                    font-size: 10px;
                     background: #FF7F00;
-                    padding: 0 3px; 
-                    line-height: 1.3; 
+                    padding: 0 3px;
+                    line-height: 1.3;
                     color: white;
                     margin-right: 2px;'>6&#9733;</span><span>sereja</span></a></td>
 		</tr>
@@ -519,7 +519,7 @@ Each test will contain <b>T=10</b> and <b>N = 100</b>. <b>M</b> will be generate
   <div class="content">
         <div class="center topbox-small-1" style="text-align: center; margin:0;"><h3>HELP</h3></div>
 <pre style="clear : both;"></pre><br/>
-<table id="help" style='border: 1px solid #EEEDEC; width:333px;'> 
+<table id="help" style='border: 1px solid #EEEDEC; width:333px;'>
 <tr>
 <td style="border-bottom: 0px;">
 <p><br/>Program should read from <b>standard input</b> and write to <b>standard output</b>.  After you submit a solution you can see your results by clicking on the <b>[My Submissions]</b> tab on the problem page. Below are the possible results:</p>

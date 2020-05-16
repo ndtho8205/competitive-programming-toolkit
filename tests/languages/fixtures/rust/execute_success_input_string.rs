@@ -5,7 +5,7 @@ fn main() {
     match io::stdin().read_line(&mut input) {
         Ok(n) => {
             println!("{} bytes read", n);
-            println!("{}", input);
+            println!("{}", input.trim());
         }
         Err(error) => println!("error: {}", error),
     }
